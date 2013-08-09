@@ -1,6 +1,6 @@
 {
   "name": "checkevents",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Server Sent Events testing helper for tape",
   "main": "index.js",
   "scripts": {
@@ -33,7 +33,7 @@
   },
   "testling": {
     "server": "test/server.js",
-    "files":  "test/all.js",
+    "files": "test/all.js",
     "browsers": [
       "ie/9",
       "ie/10",
@@ -42,5 +42,5 @@
       "safari/latest",
       "opera/latest"
     ]
-  }  
+  }
 }
