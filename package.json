@@ -30,5 +30,17 @@
   },
   "dependencies": {
     "hyperquest": "~0.1.7"
-  }
+  },
+  "testling": {
+    "server": "test/server.js",
+    "files":  "test/all.js",
+    "browsers": [
+      "ie/9",
+      "ie/10",
+      "chrome/latest",
+      "firefox/latest",
+      "safari/latest",
+      "opera/latest"
+    ]
+  }  
 }

@@ -13,9 +13,16 @@ var reAbsoluteUrl = /^\w{2,}\:\/\//;
   a server environment (e.g. [travis](https://travis-ci.org)) and browser
   (e.g. [testling](https://ci.testling.com)).
 
+  [
+  ![browser support]
+  (https://ci.testling.com/DamonOehlman/checkevents.png)
+  ](https://ci.testling.com/DamonOehlman/checkevents)
+
   ## Installation
 
+  ```
   npm install checkevents --save-dev
+  ```
 
   ## Usage
 
@@ -48,11 +55,13 @@ var reAbsoluteUrl = /^\w{2,}\:\/\//;
 
 var checkEvents = module.exports = function(url, items) {
 
+  var isAbsolute = reAbsoluteUrl.test(url);
+
   function client(t) {
     var expected = [].concat(items || []);
     var src;
 
-    t.plan(2 + expected.length);
+    t.plan(1 + expected.length);
 
     src = new EventSource(url);
 
@@ -61,18 +70,30 @@ var checkEvents = module.exports = function(url, items) {
       src.removeEventListener('open', handleOpen);
     });
 
-    src.addEventListener('message', function(evt) {
-      
+    src.addEventListener('message', function handleMessage(evt) {
+      var testVal = expected.shift();
+
+      // if the test value is an object, stringify
+      if (typeof testVal == 'object' && (! (testVal instanceof String))) {
+        testVal = JSON.stringify(testVal);
+      }
+
+      t.equal(evt.data, '' + testVal, 'received: ' + testVal);
+      if (expected.length === 0) {
+        src.removeEventListener('data', handleMessage);
+        src.close();
+      }
     });
   }  
 
   function server(t) {
     var expected = [].concat(items || []);
+    var testUrl = isAbsolute ? url : checkEvents.baseurl + url;
     var req;
 
     t.plan(2 + expected.length);
 
-    req = request.get(url);
+    req = request.get(testUrl);
 
     req.on('response', function(res) {
       t.equal(res.statusCode, 200, 'got 200 OK');
@@ -98,11 +119,6 @@ var checkEvents = module.exports = function(url, items) {
         }
       });
     });
-  }
-
-  // check if the url is a base url
-  if (! reAbsoluteUrl.test(url)) {
-    url = checkEvents.baseurl + url;
   }
 
   return checkEvents.server ? server : client;

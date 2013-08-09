@@ -17,10 +17,12 @@ exports.start = function(callback) {
       source = pull.values([{ a: 1 }, { b: 2 }]);
     }
 
-    pull(source, sse(res));
+    if (source) {
+      pull(source, sse(res));
+    }
   });
 
-  server.listen(3000, callback);
+  server.listen(process.env.PORT || 3000, callback);
 };
 
 exports.stop = server.close.bind(server);

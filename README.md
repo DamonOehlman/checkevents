@@ -6,9 +6,16 @@ server-sent event streams a little simpler and tests can be run in both
 a server environment (e.g. [travis](https://travis-ci.org)) and browser
 (e.g. [testling](https://ci.testling.com)).
 
+[
+![browser support]
+(https://ci.testling.com/DamonOehlman/checkevents.png)
+](https://ci.testling.com/DamonOehlman/checkevents)
+
 ## Installation
 
+```
 npm install checkevents --save-dev
+```
 
 ## Usage
 
