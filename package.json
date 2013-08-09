@@ -1,0 +1,33 @@
+{
+  "name": "checkevents",
+  "version": "0.0.0",
+  "description": "Server Sent Events testing helper for tape",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/all.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DamonOehlman/checkevents.git"
+  },
+  "keywords": [
+    "tape",
+    "server",
+    "sent",
+    "events",
+    "eventsource"
+  ],
+  "author": "Damon Oehlman <damon.oehlman@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DamonOehlman/checkevents/issues"
+  },
+  "devDependencies": {
+    "tape": "~1.0.4",
+    "pull-sse": "~0.2.2",
+    "pull-stream": "~2.20.1"
+  },
+  "dependencies": {
+    "hyperquest": "~0.1.7"
+  }
+}
