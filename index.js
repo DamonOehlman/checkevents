@@ -27,7 +27,7 @@ var checkEvents = module.exports = function(url, items) {
 
     t.plan(2 + expected.length);
 
-    req = request.get(baseUrl + url);
+    req = request.get(url);
 
     req.on('response', function(res) {
       t.equal(res.statusCode, 200, 'got 200 OK');
@@ -35,6 +35,11 @@ var checkEvents = module.exports = function(url, items) {
       res.on('end', t.pass.bind(t, 'ended'));
       res.on('data', function handleData(data) {
         var testVal = expected.shift();
+
+        // if the test value is an object, stringify
+        if (typeof testVal == 'object' && (! (testVal instanceof String))) {
+          testVal = JSON.stringify(testVal);
+        }
 
         t.equal(
           data.toString(),
@@ -52,10 +57,10 @@ var checkEvents = module.exports = function(url, items) {
 
   // check if the url is a base url
   if (! reAbsoluteUrl.test(url)) {
-    url = runTests.baseurl + url;
+    url = checkEvents.baseurl + url;
   }
 
-  return runTests.server ? ? server : client;
+  return checkEvents.server ? server : client;
 };
 
 checkEvents.server = typeof window == 'undefined';

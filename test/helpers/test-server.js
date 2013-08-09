@@ -5,12 +5,19 @@ var server = http.createServer();
 
 exports.start = function(callback) {
   server.on('request', function(req, res) {
-    if (req.url === '/values') {
-      pull(
-        pull.values([1, 2, 3]),
-        sse(res)
-      );
+    var source;
+
+    if (req.url === '/numbers') {
+      source = pull.values([1, 2, 3]);
     }
+    else if (req.url === '/strings') {
+      source = pull.values(['a', 'b', 'c']);
+    }
+    else if (req.url === '/objects') {
+      source = pull.values([{ a: 1 }, { b: 2 }]);
+    }
+
+    pull(source, sse(res));
   });
 
   server.listen(3000, callback);

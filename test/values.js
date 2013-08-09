@@ -1,18 +1,20 @@
 var test = require('tape');
 var checkEvents = require('..');
-var testServer = require('./helpers/test-server')();
-var isBrowser = typeof window != 'undefined';
+var isServer = typeof window == 'undefined';
+var testServer = isServer && require('./helpers/test-server');
 
-isBrowser || test('start server', function(t) {
+testServer && test('start server', function(t) {
   t.plan(1);
   testServer.start(function(err) {
     t.ifError(err, 'started');
   });
 });
 
-test('check events', )
+test('string values', checkEvents('/strings', ['a', 'b', 'c']));
+test('numeric values', checkEvents('/numbers', [1, 2, 3]));
+test('object values', checkEvents('/objects', [ { a: 1 }, { b: 2 }]));
 
-isBrowser || test('stop server', function(t) {
+testServer && test('stop server', function(t) {
   t.plan(1);
   t.ok(testServer.stop(), 'stopped');
 });
