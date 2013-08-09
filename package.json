@@ -1,6 +1,6 @@
 {
   "name": "checkevents",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Server Sent Events testing helper for tape",
   "main": "index.js",
   "scripts": {
