@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/DamonOehlman/checkevents.git"
+    "url": "https://bitbucket.org/DamonOehlman/checkevents.git"
   },
   "keywords": [
     "tape",
@@ -21,7 +21,7 @@
   "author": "Damon Oehlman <damon.oehlman@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DamonOehlman/checkevents/issues"
+    "url": "https://bitbucket.org/DamonOehlman/checkevents/issues"
   },
   "devDependencies": {
     "tape": "~1.0.4",
