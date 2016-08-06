@@ -7,16 +7,6 @@ server-sent event streams a little simpler and tests can be run in both
 a server environment (e.g. [travis](https://travis-ci.org)) and browser
 (e.g. [testling](https://ci.testling.com)).
 
-[
-![Build Status]
-(https://travis-ci.org/DamonOehlman/checkevents.png?branch=master)
-](https://travis-ci.org/DamonOehlman/checkevents)
-
-[
-![browser support]
-(https://ci.testling.com/DamonOehlman/checkevents.png)
-](https://ci.testling.com/DamonOehlman/checkevents)
-
 
 [![NPM](https://nodei.co/npm/checkevents.png)](https://nodei.co/npm/checkevents/)
 
